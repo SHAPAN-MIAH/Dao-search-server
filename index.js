@@ -41,22 +41,37 @@ client.connect(err => {
     })
   })
 
-  app.get('/userProfiles', async(req, res) => {
-    const { q } = req.query;
-    const keys = ["name", "address", "Member of DAO", "website_link"];
-
-    const search = (data) => {
-      return data.filter((item) => keys.some((key) => item[key].toLowerCase().includes(q)))
-    }
-
-    await SearchUserProfileData.find(search)
+  app.get('/userProfiles',(req, res) => {
+    SearchUserProfileData.find()
     .toArray((err, userProfiles) => {
       res.send(userProfiles)
     })
+    // const { q } = req.query;
+    // const keys = ["name", "address", "Member of DAO", "website_link"];
+
+    // const search = (data) => {
+    //   return data.filter((item) => keys.some((key) => item[key].toLowerCase().includes(q)))
+    // }
+
+    // await SearchUserProfileData.find(search)
+    // .toArray((err, userProfiles) => {
+    //   res.send(userProfiles)
+    // })
     // SearchUserProfileData.find()
     // .toArray((err, userProfiles) => {
     //     res.send(userProfiles)
     // })
+  })
+
+  app.get('/userProfile', async(req, res) => {
+    const q= req.query;
+    // const name = req.query.name;
+    // const address = req.query.address;
+    // const query = {name: name};
+    await SearchUserProfileData.find(q)
+    .toArray((err, userProfile) => {
+      res.send(userProfile)
+    })
   })
 
   app.get('/userProfiles/:id', (req, res) => {
