@@ -46,32 +46,24 @@ client.connect(err => {
     .toArray((err, userProfiles) => {
       res.send(userProfiles)
     })
-    // const { q } = req.query;
-    // const keys = ["name", "address", "Member of DAO", "website_link"];
-
-    // const search = (data) => {
-    //   return data.filter((item) => keys.some((key) => item[key].toLowerCase().includes(q)))
-    // }
-
-    // await SearchUserProfileData.find(search)
-    // .toArray((err, userProfiles) => {
-    //   res.send(userProfiles)
-    // })
-    // SearchUserProfileData.find()
-    // .toArray((err, userProfiles) => {
-    //     res.send(userProfiles)
-    // })
   })
 
-  app.get('/userProfile', async(req, res) => {
-    const q= req.query;
-    // const name = req.query.name;
-    // const address = req.query.address;
-    // const query = {name: name};
-    await SearchUserProfileData.find(q)
+  app.get('/userProfile', (req, res) => {
+    const name = req.query.name;
+    const address = req.query.address;
+    const query = {name: name};
+    SearchUserProfileData.find(query)
     .toArray((err, userProfile) => {
       res.send(userProfile)
     })
+
+    // const { q } = req.query;
+    // console.log(q)
+    // const keys = ["name", "address", "Member of DAO", "website_link"];
+    // SearchUserProfileData.find((item) => keys.some((key) => item[key].toLowerCase().includes(q)))
+    // .toArray((err, userProfile) => {
+    // res.send(userProfile)
+    // })
   })
 
   app.get('/userProfiles/:id', (req, res) => {
