@@ -18,18 +18,18 @@ const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology:
 client.connect(err => {
   const AllCategoryDaoDataCollection = client.db("DAO_EXPO").collection("AllCategoryDaoData");
   const SearchUserProfileData = client.db("DAO_EXPO").collection("SearchUserProfileData");
-  // const CultureCommunityDAO = client.db("DAO_EXPO").collection("CultureCommunityDAO");
-  // const DeFiPartnershipDAO = client.db("DAO_EXPO").collection("DeFiPartnershipDAO");
-  // const DeFiProtocolDAO = client.db("DAO_EXPO").collection("DeFiProtocolDAO");
-  // const EducationResearchDAO = client.db("DAO_EXPO").collection("EducationResearchDAO");
-  // const GameSportsDAO = client.db("DAO_EXPO").collection("GameSportsDAO");
-  // const InvestmentDAO = client.db("DAO_EXPO").collection("InvestmentDAO");
-  // const LegalDAO = client.db("DAO_EXPO").collection("LegalDAO");
-  // const NFTSArtDAO = client.db("DAO_EXPO").collection("NFTSArtDAO");
-  // const SocialGoodDAO = client.db("DAO_EXPO").collection("SocialGoodDAO");
-  // const ToolSoftwaresDAO = client.db("DAO_EXPO").collection("ToolSoftwaresDAO");
-  // const UtilityDAO = client.db("DAO_EXPO").collection("UtilityDAO");
-  // const NoCategoryDAO = client.db("DAO_EXPO").collection("NoCategoryDAO");
+  const CultureCommunityDAO = client.db("DAO_EXPO").collection("CultureCommunityDAO");
+  const DeFiPartnershipDAO = client.db("DAO_EXPO").collection("DeFiPartnershipDAO");
+  const DeFiProtocolDAO = client.db("DAO_EXPO").collection("DeFiProtocolDAO");
+  const EducationResearchDAO = client.db("DAO_EXPO").collection("EducationResearchDAO");
+  const GameSportsDAO = client.db("DAO_EXPO").collection("GameSportsDAO");
+  const InvestmentDAO = client.db("DAO_EXPO").collection("InvestmentDAO");
+  const LegalDAO = client.db("DAO_EXPO").collection("LegalDAO");
+  const NFTSArtDAO = client.db("DAO_EXPO").collection("NFTSArtDAO");
+  const SocialGoodDAO = client.db("DAO_EXPO").collection("SocialGoodDAO");
+  const ToolSoftwaresDAO = client.db("DAO_EXPO").collection("ToolSoftwaresDAO");
+  const UtilityDAO = client.db("DAO_EXPO").collection("UtilityDAO");
+  const NoCategoryDAO = client.db("DAO_EXPO").collection("NoCategoryDAO");
   
   console.log("db connected")
 
@@ -79,8 +79,8 @@ client.connect(err => {
 
   app.get('/userProfile', (req, res) => {
     const name = req.query.name;
-    const address = req.query.address;
-    const query = {name: name, address: address };
+    // const address = req.query.address;
+    const query = {name: name };
     SearchUserProfileData.find(query)
     .toArray((err, userProfile) => {
       res.send(userProfile)
