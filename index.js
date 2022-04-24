@@ -67,14 +67,14 @@ client.connect(err => {
     })
   })
 
-  app.get('/userProfile', (req, res) => {
-    const name = req.query.name;
-    const query = {name: name };
-    SearchUserProfileData.find(query)
-    .toArray((err, userProfile) => {
-      res.send(userProfile)
-    })
-  })
+  // app.get('/userProfile', (req, res) => {
+  //   const name = req.query.name;
+  //   const query = {name: name };
+  //   SearchUserProfileData.find(query)
+  //   .toArray((err, userProfile) => {
+  //     res.send(userProfile)
+  //   })
+  // })
 
   app.get('/userProfiles/:id', (req, res) => {
     const id = ObjectId(req.params.id);
@@ -84,16 +84,16 @@ client.connect(err => {
     })
   })
 
-  // app.get('/userProfile', (req, res) => {
-  //   const search = req.query.search;
+  app.get('/userProfile', (req, res) => {
+    const search = req.query.search;
 
-  //   SearchUserProfileData.find({
-  //     Name: { $regex: search, $options: "i" }
-  //   })
-  //   .toArray((err, userProfile) => {
-  //     res.send(userProfile)
-  //   })
-  // })
+    SearchUserProfileData.find({
+      name: { $regex: search, $options: "i" }
+    })
+    .toArray((err, userProfile) => {
+      res.send(userProfile)
+    })
+  })
   
 })
 
