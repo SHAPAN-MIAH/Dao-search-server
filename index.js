@@ -67,14 +67,7 @@ client.connect(err => {
     })
   })
 
-  // app.get('/userProfile', (req, res) => {
-  //   const name = req.query.name;
-  //   const query = {name: name };
-  //   SearchUserProfileData.find(query)
-  //   .toArray((err, userProfile) => {
-  //     res.send(userProfile)
-  //   })
-  // })
+
 
   app.get('/userProfiles/:id', (req, res) => {
     const id = ObjectId(req.params.id);
